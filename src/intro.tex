@@ -1,0 +1,52 @@
+\section{Introduction}
+
+High performance modeling and simulation software is hard to use. Much of the
+challenge comes from the inherent nature of the science
+under consideration, but perhaps just as much of the problem comes from
+focusing very heavily on raw compute performance. Focusing on performance is
+understandable, given the field, but it leaves the rest of us to figure out how
+to actually use the software in a way that scales for a much larger set of
+users, many of whom may be novices or migrate between software packages regularly.
+
+In previous work, Billings et. al., discovered through requirements gathering
+interviews that many of the difficulties using high performance modeling and
+simulation software fall broadly into five distinct categories,
+\cite{billings_cbhpc}. This includes input generation and preprocessing (also
+called ``model setup''); job execution and monitoring; postprocessing,
+visualization and data analysis; data management; and customizing the software.
+There are many tools that address these problems individually, but the same
+work found that the excess number and specialization of these tools also
+contribute to the learning curve.
+
+Efforts to address these five issues typically fall in with general purpose
+scientific workflow tools like Kepler, \cite{kepler}, or are reduced to myopic
+tools that satisfy some set of requirements for a single piece of software or
+platform. That is, the proposed solution to this problem is often to shoe-horn
+it into existing workflow tools that are so general that they focus on nothing
+in particular or to ignore the general problem entirely and deploy a completely
+tailored solution for the given application. These are opposing extremes, but a
+middle-of-the-road solution is also possible. A workflow engine could be
+developed that limits its scope to High-Performance Computing (HPC) and to the
+set of possible workflows that come from the previously mentioned five
+activities. A rich enough Application Programming Interface (API) could be
+exposed so that highly customized solutions could still be made based on this
+limited workflow engine with only a relatively minor amount of additional
+development required.
+
+It is not clear that one of these solutions is better than the others.
+Practical requirements will ultimately dictate which way projects go. This work
+considers the middle ground sollution and presents the Eclipse Integrated
+Computational Environment (ICE) as proof that it is possible to create such a
+system. Specifically, we show
+\begin{itemize}
+\item an architecture for such a workflow system that accomplishes all five of
+the required activities outlined above in a simple, extensible way, \ref{}.
+\item that such a system can be cross-platform for workstations and
+simultaneously deployable on the web, \ref{}.
+\item that smart design decisions enable not only authoring code for simulation
+software, but also make it possible for the system to extend itself, thereby
+enabling heavy customization, \ref{}.
+\item that the system can be easily integrated with other tools, including the
+general-purpose workflow engines and single-focus tools on opposite ends of this
+tool space, \ref{}.
+\end{itemize}

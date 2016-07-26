@@ -1,0 +1,56 @@
+%%This is a very basic article template.
+%%There is just one section and two subsections.
+\documentclass[]{elsart}
+
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{amsmath}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{The Eclipse Integrated Computational Environment}
+
+\author{Jay Jay Billings$^{1,2}$}
+\ead{billingsjj@ornl.gov}
+\author{Alexander J. McCaskey$^{1}$}
+\author{ADD ALL OTHER AUTHORS}
+
+%%%%% ----- FIXME! Add all ICE & NiCE contributors
+
+\address{$^1$Computer Science and Mathematics Division, Oak Ridge National
+Laboratory, Oak Ridge, TN 37830, USA}
+\address{$^2$The Bredesen Center for Interdisciplinary Research and Graduate
+Education, University of Tennessee, Knoxville, TN 37996-1200, USA}
+
+%----------------\input{abstract}
+
+\begin{keyword}
+\sep 
+\sep 
+supercomputing
+
+\vspace{1ex}
+
+\PACS
+07.05.Tp % Computer modeling and simulation
+
+\end{keyword}
+
+\end{frontmatter}
+
+\input{intro}
+%--------\input{background}
+%--------\input{design}
+%--------\input{comparisons}
+%--------\input{future}
+%--------\input{availability}
+\input{conclusions}
+\input{ack}
+
+\bibliographystyle{unsrt}
+\bibliography{bib}
+
+\end{document}
+
