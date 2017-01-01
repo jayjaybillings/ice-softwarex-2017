@@ -1,14 +1,14 @@
 #TeXlipse project settings
-#Mon Jan 18 16:26:38 EST 2016
+#Thu Dec 29 14:32:43 EST 2016
 markTmpDer=true
 builderNum=2
-outputDir=bin
+outputDir=bin/
 makeIndSty=
 bibrefDir=
 outputFormat=pdf
 tempDir=tmp
 mainTexFile=main.tex
-outputFile=billings_ice-jcs-2016.pdf
+outputFile=billings_ice-softwarex-2016.pdf
 langSpell=en
 markDer=true
-srcDir=src
+srcDir=src/

@@ -1,10 +1,14 @@
 %%This is a very basic article template.
 %%There is just one section and two subsections.
-\documentclass[]{elsart}
+\documentclass{elsart}
 
 \usepackage{graphicx}
 \usepackage{color}
 \usepackage{amsmath}
+\usepackage{tabularx}
+\usepackage{supertabular}
+\usepackage{longtable}
+\usepackage{booktabs}
 
 \begin{document}
 
@@ -13,18 +17,71 @@
 \title{The Eclipse Integrated Computational Environment}
 
 \author{Jay Jay Billings$^{1,2}$}
-\ead{billingsjj@ornl.gov}
+\ead{billingsjj@ornl.gov, Twitter: @jayjaybillings}
+\author{Andrew R. Bennett$^{1,3}$}
+\author{Jordan Deyton$^{1,4}$}
+\author{Kasper Gammeltoft$^{1,5}$}
+\author{Jonah Graham$^{6}$}
+\author{Dasha Gorin$^{1,7}$}
+\author{Hari Krishnan$^{8}$}
+\author{Menghan Li$^{9}$}
 \author{Alexander J. McCaskey$^{1}$}
-\author{ADD ALL OTHER AUTHORS}
-
-%%%%% ----- FIXME! Add all ICE & NiCE contributors
+\author{Taylor Patterson$^{1,10}$}
+\author{Robert Smith$^{1}$}
+\author{Gregory R. Watson$^{1}$}
+\author{Anna Wojtowicz$^{1,11}$}
 
 \address{$^1$Computer Science and Mathematics Division, Oak Ridge National
 Laboratory, Oak Ridge, TN 37830, USA}
 \address{$^2$The Bredesen Center for Interdisciplinary Research and Graduate
-Education, University of Tennessee, Knoxville, TN 37996-1200, USA}
+Education, University of Tennessee, 444 Greve Hall, 821 Volunteer
+  Blvd. Knoxville, TN 37996-3394}
+\address{$^3$University of Washington, Seattle, WA 98105}
+\address{$^4$General Electric Company, 3200 North Grandview Blvd Waukesha, WI
+53188-1678}
+\address{$^5$Georgia Institute of Technology North Avenue, Atlanta, GA 30332}
+\address{$^6$Kichwa Coders Ltd. 1 Plomer Green Avenue Downley, High Wycombe
+HP13 5LN United Kingdom}
+\address{$^7$Northwestern University 633 Clark Street Evanston, IL 60208}
+\address{$^8$Lawrence Berkeley National Laboratory, 1 Cyclotron Rd, Berkeley,
+CA 94720}
+\address{$^9$Department of Computer Science, and Department of Biological
+Sciences, Purdue University, West Lafayette, IN 47906} 
+\address{$^10$Acato Information Management, LLC 114 Union Valley Rd. Oak Ridge,
+TN 37830}
+\address{$^11$Colorado State University Fort Collins, CO 80523}
 
-%----------------\input{abstract}
+\begin{abstract}
+
+Problems in modeling and simulation require significantly different
+workflow management technologies than standard grid-based workflow
+management systems. Computational scientists typically interact with
+simulation software in a feedback driven way were solutions and
+workflows are developed iteratively and simultaneously. This work
+describes common activities in workflows and how combinations of these
+activities form unique workflows. It presents the Eclipse Integrated
+Computational Environment as a workflow management system and
+development environment for the modeling and simulation community.
+Examples of the Environment's applicability to problems in energy
+science, general multiphysics simulations, quantum computing and other
+areas are presented as well as its impact on the community.
+
+%---------------FIXME! Table reference!
+%\begin{table*}[t]
+%\begin{tabularx}{\textwidth}{|l|X|l|}
+%\hline
+%Class & Class Description & Object Description\tabularnewline\hline
+%Item & Java class with code to execute an abstract workflow. Provides a
+%Form. & Concrete workflow executor.\tabularnewline\hline
+%Form & Description and template of the data needed for the Item to
+%process the workflow. & User-modified workflow data.\tabularnewline\hline
+%Action & Java class for executing a specific task in the workflow. Used
+%by Items. & Concrete workflow task executor.\tabularnewline\hline
+%\end{tabularx}
+%\caption{Class Descriptions for Items, Forms and Actions}
+%\end{table*}
+
+\end{abstract}
 
 \begin{keyword}
 \sep 
@@ -40,14 +97,21 @@ supercomputing
 
 \end{frontmatter}
 
-\input{intro}
-%--------\input{background}
-%--------\input{design}
-%--------\input{comparisons}
-%--------\input{future}
-%--------\input{availability}
-\input{conclusions}
-\input{ack}
+\section{Notice of Copyright}\label{notice-of-copyright}
+
+This manuscript has been authored by UT-Battelle, LLC under Contract No.
+DEAC05-00OR22725 with the U.S. Department of Energy. The United States
+Government retains and the publisher, by accepting the article for
+publication, acknowledges that the United States Government retains a
+nonexclusive, paid-up, irrevocable, world-wide license to publish or
+reproduce the published form of this manuscript, or allow others to do
+so, for United States Government purposes. The Department of Energy will
+provide public access to these results of federally sponsored research
+in accordance with the DOE Public Access Plan
+(http://energy.gov/downloads/doe-public-access-plan ).
+
+
+\input{content}
 
 \bibliographystyle{unsrt}
 \bibliography{bib}
