@@ -55,7 +55,7 @@ Computational scientists perform a variety of tasks in modeling and
 simulation that can be abstracted into a lightweight theoretical
 framework based broadly on five high-level \emph{activities}: (1)
 creating input, (2) executing jobs, (3) analyzing results, (4) managing
-data, and (5) modifying code. Those same computational scientist would
+data, and (5) modifying code. Those same computational scientists would
 most likely find these activities difficult for all codes with which
 they lack experience, whereas with their own codes---or those with which
 they are most familiar---these tasks may be so simple that they are
@@ -101,7 +101,7 @@ framework based on known variables---the input. Models and simulation
 codes are typically run locally for small jobs or for development. Large
 simulations, on the other hand, typically require a large amount of
 hardware resources; these resources are usually off site (i.e.,
-physically unavailable to the user) and are accessed remotely remotely
+physically unavailable to the user) and are accessed remotely
 through Secure Shell (SSH) connections or similar protocols. Remote
 execution requires moving the input in advance of the execution and
 copying or moving the output to the user's machine. In many cases,
@@ -126,7 +126,7 @@ example, post-processing results and visualizing the new data with
 dedicated visualization tools. For many types of scientific computing,
 this includes viewing the results of a simulation on a mesh or grid and
 extracting publication quality images or movies from that data. Other
-cases may include analyzing results in preparation for follow
+cases may include analyzing results in preparation for follow on
 simulations or performing feature extraction, classification, or
 activities for machine learning and data mining.
 
@@ -200,10 +200,10 @@ Directed Acyclic Graphs, (DAGS) - as is common with grid workflow tools,
 State Transfer (REST), \cite{fielding_architectural_2000}.
 
 Users initiate requests to create, edit, update or delete workflows from
-the \emph{ICE Client} (the workbench). The list of available workflow
+the \emph{ICE Client} (the workbench). The list of available workflows
 that can be created is provided dynamically to the \emph{ICE Client} by
-the \emph{ICE Core}, which acts as a kind of server. This information is
-provided dynamically since it often changes as run time based on the
+the \emph{ICE Core}, which acts as a server. This information is
+provided dynamically since it often changes at run time based on the
 configuration of available workflow components in the registry and on
 persisted workflows that users have saved in their workspace.
 Information about workflows are provided from the Core to the Client
@@ -232,8 +232,6 @@ differences between Items, Actions, and Forms.\footnote{An upcoming update to th
 IWorkflow, IWorkflowTask, and IWorkflowEngine interfaces to bring ICE's
 API language closer to other systems. This must be done with care to
 satisfy backwards compatibility requirements on the present API.}
-
-Table 1: Class Descriptions for Items, Forms and Actions
 
 \begin{table*}[t]
 \begin{tabularx}{\textwidth}{|l|X|l|}
@@ -287,7 +285,7 @@ workspace as the workflow itself. For example, when executing a remote
 job, ICE will automatically move the input file if it is specified in
 the workflow and available in the project directory of the workspace.
 Likewise, if output is small enough, ICE will automatically move it back
-to local directory. By conventional, all paths in ICE's Forms are
+to local directory. By convention, all paths in ICE's Forms are
 relative to the workspace root path. Workspace directories are specified
 by the user.
 
@@ -298,7 +296,7 @@ XML-based provider since it is registered as a dynamic service, and in
 the past a JAX-P based provider has been used.
 
 \subsubsection{Extending the Framework to Add Custom
-Workflows}\label{extending-the-framework-to-add-custom-workflows}
+Workflows}\label{framework}
 
 ICE is an Eclipse Rich Client Platform (RCP) application,
 \cite{mcaffer_eclipse_2010}. It has a plugin architecture based on Equinox, the
@@ -355,7 +353,7 @@ of workflows that are easy to encode.
 
 Outside of the development team, ICE is commonly deployed as a
 sophisticated user environment for computational science projects (see
-``Impact'' below) and as a visualization tool. ICE originally a
+``Impact'' below) and as a visualization tool. The ICE source code originally contained a
 significant amount of visualization support, but at the request of users
 in the community that support was ``spun off'' in early 2016 as a
 separate visualization project, the Eclipse Advanced Visualization
@@ -430,7 +428,7 @@ and eliminating voids. The downside of this process is that it causes
 the part to shrink and warp. An ideal near-net-shape process that
 combined binder jetting with solid-state sintering would thus consider
 warpage and deformation due to sintering in the design phase of the
-part. Figure 3 shows an ICE-based workbench for perform simulations of
+part. Figure 3 shows an ICE-based workbench for performing simulations of
 this process with visualizations of the pre- and post-simulation
 properties of a central body with eight cantilevers. The primary
 deformation in this type of geometry is bending or drooping of the
@@ -464,7 +462,7 @@ workflow and is shown in figure 4.
 
 \subsection{Quantum Computing}\label{quantum-computing}
 
-As quantum computing grows, so to does the need for sophisticated
+As quantum computing grows, so too does the need for sophisticated
 software that can utilize quantum hardware or perform calculations on
 simulated quantum hardware. Humble et al. created a simulator for
 adiabatic quantum computers where workflows were added to ICE to support
@@ -517,12 +515,12 @@ to improve the pursuit of existing research. The high extensibility of
 ICE and the tools that it combines from the larger Eclipse ecosystem
 have made it possible for researchers on the development team to quickly
 deploy new simulation environments for problems, such as the binder jet
-modeler and reflectivity tools mentioned earlier. Other tools create
+modeler and reflectivity tools mentioned earlier. Other tools created
 with ICE may not radically invent something new, but they tend to
 streamline interactions with those tools. Many ICE users (and certainly
 the development team!) have experienced improvements in software
 development activities because of the tools that ICE provides or learned
-new technologies because access to new tooling was a simple as
+new technologies because access to new tooling was as simple as
 installing more plugins through the Eclipse Marketplace.
 
 The ICE development team does not track ICE's user base, as useful as
@@ -545,7 +543,7 @@ structures, \cite{graham_eclipse_2016}. ICE was also one of the founding
 projects of the Eclipse Science Working Group.
 
 Eclipse ICE is an open source project and the authors welcome and encourage
-engagement and contributions from readers. Interested parties my inquire by
+engagement and contributions from readers. Interested parties may inquire by
 contacting the corresponding author or visiting the website.
 
 \section{Sample Code, Tutorials and Other
@@ -567,7 +565,7 @@ also excellent examples of how to work with the platform.
 Workflows for computational scientists in modeling and simulation differ
 greatly from experimentalists or those who primarily interact with
 grid-based workflow management systems. This work presented the Eclipse
-Integrated Computational Environment (ICE) and described how its has
+Integrated Computational Environment (ICE) and described how it has
 been used to address interdisciplinary problems in modeling and
 simulation for energy science. One interesting avenue for future
 exploration is coupling or integrating ICE with other workflow tools
