@@ -1,7 +1,6 @@
 \section{Motivation and Significance}\label{motivation-and-significance}
 
-In previous work, Billings et al. interviewed simulation and modeling 
-software users to compile a list of requirements for implementing and 
+In previous work, Billings et al. interviewed modeling and simulation subject matter experts to compile a list of requirements for implementing and 
 using these kinds of applications. In the process, they discovered 
 that many of the difficulties inherent in using
 high-performance modeling and simulation software fall into five
@@ -44,8 +43,7 @@ described here shows that:
   among others (see ``Illlustrative Examples'').
 \end{itemize}
 
-This section concludes with an introduction of the workflow model addressed by
-ICE. Section \ref{software-description} details the software
+This section concludes with an introduction of the ICE workflow model. Section \ref{software-description} details the software
 from an architectural perspective, while Section \ref{illustrative-examples}
 provides a set of comprehensive examples. A
 presentation of the impact is included in Section \ref{impact}, and sample 
@@ -231,8 +229,8 @@ an ``Action Factory'' and obtained at runtime. Table 1 describes the
 differences between Items, Actions, and Forms.\footnote{An upcoming 
 update to the API will include the formal introduction of
 IWorkflow, IWorkflowTask, and IWorkflowEngine interfaces to bring ICE's
-API language closer to other systems. This must be done with care to
-satisfy backwards compatibility requirements on the present API.}
+API language closer to other systems. This must be done carefully to
+preserve backwards compatibility with the present API.}
 
 \begin{table*}[t]
 \begin{tabularx}{\textwidth}{|l|X|l|}
@@ -267,7 +265,7 @@ This design is very important. First, it means that all workflows in
 ICE, regardless of their actual details and functions, can only behave in
 a specific set of known and predictable ways, and this predictability 
 simplifies the way the Core manages and interacts with Items. Second, by
-formalizing state and error checks, it explicitly delineates which workflows 
+formalizing state and error checks, ICE explicitly delineates which workflows 
 can be executed from those that must receive additional configuration. 
 Finally, it allows developers implementing Items and
 Actions to specify, by contract, what is required before proceeding to the
@@ -472,7 +470,7 @@ shows the workbench for this project.
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{images/jaded.png}
-\caption{ICE workbench in JADE for quantum computing simulations.}
+\caption{ICE workbench in the Jade Adiabatic Development Environment (JADE) for quantum computing simulations.}
 \end{figure}
 
 ICE also supports other quantum computing projects, including the
@@ -571,7 +569,7 @@ applicability across many topics in energy science suggests that
 there are opportunities for these systems in general. Finally, one 
 interesting avenue of future exploration is coupling or integrating ICE 
 with other workflow tools such as Aiida, Triquetrum, Kepler, and Pegasus,
-which would make it possible to combine the best of grid and modeling and
+which would make it possible to combine the best of grid and modeling workflows and
 simulation workflows to address greater challenges.
 
 \section*{Acknowledgments}\label{acknowledgments}
@@ -586,7 +584,7 @@ Bernholdt, Erica Grant, Mike Guidry, Forest Hull, Eric J. Lingerfelt,
 Sebastien Jourdain, JiSoo Kim, Allison Koenecke, Fangzhou Lin, Greg
 Lyon, Tony McCrary, John M. Hetrick III, Elizabeth Piersall, Neeti
 Pokhriyal, Adrian Sanchez, Claire Saunders, Nick Stanish, Matthew Wang, and
-Scott Wittenberg. The support of both the NEAMS and CASL programs is also
+Scott Wittenberg. The support of both the Nucleare Energy Advanced Modeling and Simulation (NEAMS) and Consortium for Simulation of Light-water Reactors (CASL) programs is also
 greatly appreciated. The authors would like to acknowledge the special
 contribution of the Eclipse Foundation, the Eclipse Community, the
 Eclipse Science Working Group, and our many colleagues who use and
