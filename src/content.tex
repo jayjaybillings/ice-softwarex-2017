@@ -40,7 +40,7 @@ described here shows that:
 \item
   Such a system is applicable to a suite of problems in energy science,
   including virtual battery simulations and additive manufacturing, 
-  among others (see ``Illlustrative Examples'').
+  among others (see ``Illustrative Examples'').
 \end{itemize}
 
 This section concludes with an introduction of the ICE workflow model. Section \ref{software-description} details the software
@@ -167,7 +167,7 @@ distributed resources in a well-defined order to accomplish a specific
 goal,'' \cite{yu_taxonomy_2005}. Others, such as Pizzi et al., subscribe to
 similar definitions \cite{pizzi_aiida:_2016}. This ``process'' view is
 acceptable where the workflow is static and does not require additional
-human input or ``human in the loop'' behavior after the all the initial
+human input or ``human in the loop'' behavior after all the initial
 human input is provided. That is, a ``process-oriented'' definition is
 acceptable where all human input is provided in advance. However,
 workflows within ICE are fully interactive with regular call-backs to
@@ -383,7 +383,7 @@ distribution during discharge.
 \caption{ICE workbench for VIBE analysis.}
 \end{figure}
 
-VIBE 1.0 is available as a virtual machine in which the simulation
+VIBE 1.0 is available as a virtual machine (for convenient deployment) in which the simulation
 software and ICE are provided side by side. The VIBE team's more recent 
 efforts for VIBE~1.1 include providing the simulation
 software in Docker containers so that users can download the latest,
@@ -411,8 +411,7 @@ problem solved using the MOOSE framework \cite{mccaskey_scientific_2015}.
 There are over three hundred MOOSE-based applications, and it is very
 easy to create new MOOSE applications. The ICE development team uses ICE
 and MOOSE to quickly solve energy science problems with HPC resources 
-and to deploy domain-specific workbenches. ICE includes
-support for automatically downloading and building MOOSE from MOOSE's GitHub
+and to deploy domain-specific workbenches. ICE provides features for automatic installation, configuration and optimization of scientific development environments. In the context of MOOSE, ICE includes support for automatically downloading and building MOOSE from MOOSE's GitHub
 repository. This integration enables users to immediately begin developing
 complex multiphysics applications using the pre-installed Eclipse C Development 
 Tools. Once the new MOOSE-based application is built, it will automatically work with
@@ -554,7 +553,7 @@ new workflow Items are available at
 Examples of how to use the scripting engine are available at
 \url{https://github.com/eclipse/ice/tree/master/examples}. ICE also includes an
 extensive suite of unit, integration, and UI tests, which are
-also excellent examples of how to work with the platform.
+also excellent examples of how to work with the platform. Tutorial and demonstration videos are available on YouTube at \url{https://goo.gl/nxCzRD}.
 
 \section{Conclusions}\label{conclusions}
 
