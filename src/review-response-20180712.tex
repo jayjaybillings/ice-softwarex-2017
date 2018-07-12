@@ -1,6 +1,6 @@
 Dear Dr. Sobie,
 
-Thank you very much for providing the reviewer's responses. Please find below a list of the issues that we have addressed and comments on the reviewer's responses. We found these reviews to be highly constructive and made every effort to address the reviews as thoroughly as possible.
+Thank you very much for providing the reviewer's responses. Please find below a list of the issues that we have addressed and comments on the reviewer's responses. We found these reviews to be highly constructive and made every effort to address the reviews as thoroughly as possible. We believe that the result is a significantly stronger narrative.
 
 We have resubmitted the manuscript and hope that you will reconsider it for publication in Software X.
 
@@ -10,110 +10,81 @@ ORNL
 
 -----
 Reviewer #1
-
->> It seems that comparison to other models could be improved and the authors could have listed features that provided by ICE that are either missing in other workflow models or are efficient compare, other models. Perhaps this section can be re-named as background or related work. Also, it was a little surprise that authors did not mention provenance which is one of the import features expected or desired by the scientific community. 
-
-We have expanded this section and addressed unique features and the comparison of ICE to other workflow engines with activities-based workflow models.
-
->> 
->> To summarize, the review,  the work seems interesting and useful to the community. The writing could be improved, below is the list of suggestions:
->> 
 >> 1) A figure of some sort on complete architecture is extremely desired.
 
 We have added four pictures and expanded the software architecture section to better describe ICE's architecture.
 
->> 
 >> 2) Some of the references need to be looked up carefully. For instance reference 23 and 24 seem incomplete and less useful for a reader. See below:
 >> 
 >> [24] Jay Jay Billings. Eclipse ICE, October 2016.
->> 
 
 Five erroneous web citations were addressed.
 
->> 3) Renaming
->> Comparison to other models seems incomplete. Perhaps it could be renamed to something better such as "related work."
->> 
+>> 3) Renaming Comparison to other models seems incomplete. Perhaps it could be renamed to something better such as "related work."
 
-Done.
+We have expanded this section and addressed unique features and the comparison of ICE to other workflow engines with activities-based workflow models.
 
 >> 4) It is not very clear exactly how ICE integrate code from other languages. A reference to EASE was given but no other detail was provided.
 
 We have added text to clarify that this is done by simple scripts in Javascript and Python through a built in shell, through workflow items, and in extreme cases through the Java Native Interface.
 
->> -----
->> Reviewer #2: This manuscript describes the Eclipse Integrated Computational Environment (ICE, https://www.eclipse.org/ice/), a scientific workbench and workflow environment for the execution and analysis of computational simulations. ICE adopts an alternative approach to typical workflow systems, which consists of defining analysis and computational processes into activities, as well as the support for workflow steering. Overall, the system has a proof community and relies in a well-established IDE (Eclipse), which increases its adoption by the community. This manuscript provides general concepts of the ICE system and illustrative examples, however lacks detailed information about the system architecture and execution environments. Additionally, related work is not comprehensive.
+-----
+Reviewer #2: 
 
->> Detailed comments:
->> - Related work should be carefully revised, and include popular workflow system such as Swift, Pegasus, Makeflow, Taverna, Askalon, Nextflow, etc. (only Kepler is shown as an example). The manuscript claims that ICE follows the five categories described in the motivation section, however it is not the only workflow system that follows this classification. 
-
-The purpose of this work is not to extensively compare ICE to other workflow engines, 
+>> 1) Related work should be carefully revised, and include popular workflow system such as Swift, Pegasus, Makeflow, Taverna, Askalon, Nextflow, etc. (only Kepler is shown as an example). The manuscript claims that ICE follows the five categories described in the motivation section, however it is not the only workflow system that follows this classification. 
 
 We do not believe that a detailed, n-by-n comparison of workflow systems is valuable in the context of a software publication on ICE, but we agree that it is important to illustrate the differences a little better. To that end, the text now discusses Chiron, Taverna, Aiida, and Fireworks. We have also added a reference to other work by the authors that describes the differences between modeling and simulation workflows and grid workflows in more detail.
 
->> The same issue appears again in Section 2.0.2 (section number should be revised too), where the presented model is claimed to significantly differ from similar efforts in workflow science. This is not accurate, there are several workflow systems that follows the activities model, such as Moteur, Taverna, and Chiron. It is crucial to distinguish ICE's contributions from these systems. 
+>> 1.b) The same issue appears again in Section 2.0.2 (section number should be revised too), where the presented model is claimed to significantly differ from similar efforts in workflow science. This is not accurate, there are several workflow systems that follows the activities model, such as Moteur, Taverna, and Chiron. It is crucial to distinguish ICE's contributions from these systems. 
 
 Taverna and Chiron are now discussed in the related work section. The exact differences between their Activities and ICE's are presented.
 
->> Last, interactive analysis of workflow executions is claimed as a novelty of this work; however workflow steering has been investigated by over a decade and support in systems such as Chiron and SciCumulus. How ICE differs from them?
+>> 2) Last, interactive analysis of workflow executions is claimed as a novelty of this work; however workflow steering has been investigated by over a decade and support in systems such as Chiron and SciCumulus. How ICE differs from them?
 
-Our paper only points out that ICE can perform this work and does not, as far as we can tell, claim that ICE uniquely provides this capability. 
+Our paper only points out that ICE can perform this work and does not, as far as we can tell, claim that ICE uniquely provides this capability.  We did not address anything related to this point, but would be happy to do so with more direction if necessary.
 
->> 
->> - Section 3, software description needs to be substantially improved. It misses an overview architecture (a figure would be extremely helpful) that shows how ICE components interact/leverage Eclipse components. This is one of the main contributions of this paper and should be better articulated.
+>> 3) Section 3, software description needs to be substantially improved. It misses an overview architecture (a figure would be extremely helpful) that shows how ICE components interact/leverage Eclipse components. This is one of the main contributions of this paper and should be better articulated.
 
 We have addressed this point by adding new diagrams and more text describing the architecture of ICE. We have also added more information on the relationship to Eclipse Equinox, RCP, and PTP, etc. and cleaned up the sections that describe Eclipse across the document.
 
->> Several definitions are looseness:
->> + How the Items model differs from Taverna's model with Web Services?
+>> 4) How the Items model differs from Taverna's model with Web Services?
 
 Taverna's web services are now discussed specifically in the related work section, but since they are not similar to ICE's Items the relationship is not addressed. Shim services are now discussed briefly as well.
 
->> + There is a mention that ICE API will be evolved to make the API language closer to other systems. Which systems and how?
+>> 5) There is a mention that ICE API will be evolved to make the API language closer to other systems. Which systems and how?
 
 This is a generic statement about the names of classes and methods in other systems compared to the language used to describe these in ICE. For example, Item's in ICE are typically called tasks in Kepler-based systems such as Triquetrum. 
 
 The footnote has been changed to reflect this by adding "such as Triquetrum" after "other system" to provide an example.
 
->> + What defines a small output (so it will be automatically transferred)?
+>> 6) What defines a small output (so it will be automatically transferred)?
 
 50MB. This has been updated in the text.
 
->> + Why is it more sophisticated? What can be achieved here? It is important to enumerate the advantages.
+>> 7) Why is it more sophisticated? What can be achieved here? It is important to enumerate the advantages.
 
-We have updated the text in this section to more clearly reflect our thinking on language-based workflows in ICE.
+We have updated the text in this section to more clearly and fairly reflect our thinking on language-based workflows in ICE.
 
->> + What is a 'stubs' of plugins? How will it then interact with the framework? Which capabilities are used to enable them with ICE?
+>> 8) What is a 'stubs' of plugins? How will it then interact with the framework? Which capabilities are used to enable them with ICE?
 
-Updated the text to define stubs, strengthen the related statement on installation, and to describe the role of the OSGi in this process.
+We have updated the text to define stubs, strengthen the related statement on installation, and to describe the role of the OSGi in this process.
 
->> + Which operations are available via the APIs? It is mentioned that it has a rich API, but no detailed information is provided.
+>> 9) Which operations are available via the APIs? It is mentioned that it has a rich API, but no detailed information is provided.
 
 Detailed information is provided in the API documentation, which is cited in the final section. However, we strengthened this sentence by adding text that all workflow management functions are exposed by the API.
 
->> 
->> - IMHO, one of the main contributions and novelty of the paper is the combination of the Eclipse IDE with the workflow development/execution capabilities. However, it is not discussed in detail how a user may benefit from this integration.
+>> 10) IMHO, one of the main contributions and novelty of the paper is the combination of the Eclipse IDE with the workflow development/execution capabilities. However, it is not discussed in detail how a user may benefit from this integration.
 
-This point has been addressed by creating a section specifically on the relationship to Eclipse out of content from the old framework extension section and new information on the benefits of self-hosting.
+This point has been addressed by creating a section specifically on the relationship to Eclipse by merging content from the old framework extension section and new information on the benefits of self-hosting.
 
->> 
->> - The examples section would significantly benefit of more information about how the workflows are executed.
+>> 11) The examples section would significantly benefit of more information about how the workflows are executed.
 
-All workflows in ICE are executed as described in the executing jobs sub section.
+We added a paragraph describing how workflows are executed in ICE at the end of the executing jobs section. The main purpose of this paragraph was to illustrate the differences between executing jobs and executing workflows because they are significantly different.
 
->> 
->> - Also, there are mentions that ICE can run locally and in HPC platforms, but no information is provided on how the system actually executes the workflows. There is a quick mention to SSH connections, but nowadays there are other methods to remotely submit jobs for execution, such as Globus GRAM, Bosco, etc. The manuscript needs a proper workflow execution section which describes the different methods how the workflows can be executed.
+>> 12) Also, there are mentions that ICE can run locally and in HPC platforms, but no information is provided on how the system actually executes the workflows. There is a quick mention to SSH connections, but nowadays there are other methods to remotely submit jobs for execution, such as Globus GRAM, Bosco, etc. The manuscript needs a proper workflow execution section which describes the different methods how the workflows can be executed.
 
 The executing jobs section completely covers how workflows are executed in ICE. We have modified it to state that Globus GRAM, etc. are not supported. We have also provided some text to clarify that executing jobs is not the same as executing a workflow.
 
->> 
->> In summary, I see much potential in the proposed workflow tool, however a thoroughly characterization and description of the architectural components and their capabilities is key to demonstrate the novelty and impact of the discussed system.
+>> 13) In summary, I see much potential in the proposed workflow tool, however a thoroughly characterization and description of the architectural components and their capabilities is key to demonstrate the novelty and impact of the discussed system.
 
-We are very grateful for this thorough review of the paper. We believe that we have addressed this review just as thoroughly with the significant updates provided in this revised manuscript.
-
-Also tightened up text significantly.
-
->> 
->> ******************************************
->> Please note that the editorial process varies considerably from journal to journal. To view the submission-to-publication lifecycle, click here: http://help.elsevier.com/app/answers/detail/p/7923/a_id/160
->> 
->> For further assistance, please visit our customer support site at http://help.elsevier.com/app/answers/list/p/7923. Here you can search for solutions on a range of topics, find answers to frequently asked questions and learn more about EES via interactive tutorials. You will also find our 24/7 support contact details should you need any further assistance from one of our customer support representatives.
+We are very grateful for this thorough review of the paper. We believe that we have addressed this review just as thoroughly with the significant updates provided in this revised manuscript, especially the new content on the architecture and the relationship to other Eclipse technologies.
