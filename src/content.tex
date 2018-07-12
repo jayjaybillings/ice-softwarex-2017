@@ -27,7 +27,7 @@ others, and practical requirements will ultimately dictate the path of a
 project's progress. This work considers a middle ground solution and
 presents the Eclipse Integrated Computational Environment (ICE) as proof
 that it is possible to create such a system. Specifically, the work
-described here shows that:
+described here shows that
 
 \begin{itemize}
 \item
@@ -48,7 +48,7 @@ provides a set of comprehensive examples. A
 presentation of the impact is included in Section \ref{impact}, and details on obtaining sample 
 code are provided in Section \ref{sample-code-tutorials-and-other-resources}.
 
-\subsubsection{Workflow Model}\label{workflow-model}
+\subsection{Workflow Model}\label{workflow-model}
 
 Computational scientists perform a variety of tasks in modeling and
 simulation that can be abstracted into a lightweight theoretical
@@ -111,14 +111,16 @@ detect calculation errors that will result in incorrect results. If such
 problems are found, the job is typically cancelled (``killed'') to save
 compute resources and is then re-run later.
 
+Local jobs in ICE are executed using standard Java system calls. Remote jobs are launched only through SSH connections on remote machines. This includes direct SSH command execution on clusters and proxy connections through a pilot service on large Leadership-class supercomputers. Services such as Globus GRAM and Bosco are not supported, but the SSH command execution includes extensive support for numerous batch and queuing systems. The Eclipse Parallel Tools Platform (PTP) is used to create all remote SSH connections, regardless of the target machine \cite{tibbitts_integrated_2009}.
+
 In this work, it should be assumed---unless otherwise noted---that
 ``executing a job'' includes monitoring that job in one or more ways,
-possibly including real-time updates to visualizations.
+possibly including real-time updates to visualizations. It is also important to note that executing a job is not the same as executing a workflow. Executing jobs specifically refers to launching simulations, whereas executing a workflow could be something different such as generating input or post-processing results. This is an important distinction because ICE's workflows are all executed locally, but simulations and work may be distributed remotely depending on the implementation of the workflow plugin.
 
 \textbf{Analyzing results} includes executing special jobs to transform
 data in one or more prescribed ways and producing artifacts with
 scientific significance from the transformed data. This could include, for
-example, postprocessing results and visualizing the new data with
+example, post-processing results and visualizing the new data with
 dedicated visualization tools. For many types of scientific computing,
 this includes viewing the results of a simulation on a mesh or grid and
 extracting publication-quality images or movies from that data. Other
@@ -143,37 +145,42 @@ data, packaging data for publications, and updating values manually or through s
 
 \textbf{Modifying code} is not typically considered a part of a
 scientific computing workflow. However, modeling and simulation use
-cases often require users to explicitly modify code before execution or to issue special re-build instructions. This is true, for example, with the computational fluid dynamics code Nek5000 which requires modification of code before compilation and special build instructions using the \textit{makenek} shell script,
-\cite{the_nek5000_team_nek5000_2014},
+cases often require users to explicitly modify code before execution or to issue special re-build instructions. This is true, for example, with the computational fluid dynamics code Nek5000, which requires modification of code before compilation and special build instructions using the \textit{makenek} shell script
+\cite{the_nek5000_team_nek5000_2014}.
 Many computational scientists consider ``their workflow'' to be re-running
 software after modifications for purely exploratory purposes. This might
 be required if the model that the author is modifying cannot be
 configured directly as part of the input but can be easily accomplished by manipulating the source code.
 
-\subsubsection{Comparison to Other
-Models}\label{comparison-to-other-models}
+\subsection{Related Work}\label{comparison-to-other-models}
 
-This model of workflows differs significantly from those of similar
-efforts in workflow science because it defines workflows in terms of
-activities. Other workflow models in the literature define a workflow as
+ICE's model of workflows differs significantly from many other
+efforts in workflow science because it defines workflows in terms of high-level activities that are meant to guide workflow implementers and users. Many other workflow models in the literature define a workflow as
 a collection of computing processes. For example, Yu and Buyya define
 grid workflows as ``a collection of tasks that are processed on
 distributed resources in a well-defined order to accomplish a specific
-goal,'' \cite{yu_taxonomy_2005}. Others, such as Pizzi et al., subscribe to
+goal'' \cite{yu_taxonomy_2005}. Others, such as Pizzi et al., subscribe to
 similar definitions \cite{pizzi_aiida:_2016}. This ``process'' view is
 acceptable where the workflow is static and does not require additional
 human input or ``human in the loop'' behavior after all the initial
-human input is provided. However, workflows within ICE are fully interactive with regular callbacks to humans. It is simpler to discuss ``activities'' than it is to create a
-distinction between ``human processes'' and ``computer processes.''
+human input is provided. However, workflows within ICE are fully interactive with regular callbacks to humans. It is simpler to discuss ``activities'' than it is to create a distinction between ``human processes'' and ``computer processes.''
 Focusing on ``activities'' over processes (human or computer) also has
 the benefit of removing concrete elements such as hardware or software properties that distract from details of workflows and workflow 
 management systems. That is, considerations such as memory usage and 
 raw performance are important, but questions about the abstract workflow 
 or what the workflow management system should do are far more important in this context.
 
+There are other workflow engines that have their own concepts of activities, with various similarities and differences compared to ICE's model. For example, Taverna has a concept of activities \cite{wolstencroft_taverna_2013}. Activities in Taverna are defined as invocable activities within a workflow, which is closely related to a lower-level class in ICE called Actions (see \ref{item}). On the other hand, ICE's activities loosely describe what can be done conceptually and the workflows that are implemented provide the Actions that carry out these activities. 
+
+ICE and Taverna can both natively execute Java code, but ICE 2.0 cannot natively invoke Web Service Definition Language (WSDL) web services. ICE uses regular Java-based libraries to interact with web services, such as Jersey, and requires that developers write the code to do this directly. Shim services in Taverna are provided in ICE as separate services in the framework, but are otherwise very similar.
+
+Chiron, an algebraic workflow engine, has a concept of activities that is closer to ICE's than Taverna's, but still very strongly related to implementation \cite{ogasawara_chiron_2014}. Activities in Chiron are combinations of the program or expression to execute, plus the input schema, plus the output schema. This is a close match to the design of the Item class in ICE. ICE's Items (see Section \ref{item}) implement the high-level activities, such as launching a job or creating a model. The major difference between Chiron's activities and ICE's Items appears to be scope. A Chiron activity such as Map or Reduce would normally be implemented as an Action in ICE, whereas an Item in ICE may be tasked with executing multiple Actions to enact a workflow.
+
+One significant difference between ICE and many other systems is that it uses a language-based approach to defining workflows, but with a standard language, Java, as opposed to a custom workflow definition language. Pizzi et al. do this with Aiida and Python, and the Fireworks Workflow Engine also uses Python. The advantage of this approach is that compilation is not a problem. ICE also differs from other workflow engines because it is specifically focused on modeling and simulation instead of grid workflows. Grid workflows are almost always defined as workflows based on trees without humans in the loop, but modeling and simulation workflows are much more interactive and undirected \cite{billings_toward_2017}. 
+
 \section{Software Description}\label{software-description}
 
-ICE was specifically created to address hands-on workflows for computational scientists, as in section \ref{illustrative-examples}. Users download and
+ICE was specifically created to address hands-on workflows for computational scientists, as in Section \ref{illustrative-examples}. Users download and
 execute ICE locally, and ICE in turn orchestrates local or remote workflows as
 required. It provides a comprehensive workbench for modeling and
 simulation that includes tools for workflows, visualization, data
@@ -181,45 +188,76 @@ management, and software development.
 
 \subsection{Software Architecture}\label{software-architecture}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{src/images/ICE-arch-1.jpg}
+\caption{High-level architecture of ICE showing the relationships and rough division of responsibility between the five primary components of ICE. The ICE Core is responsible for the workflow management and delegations instructions and data to the Item and Data Structures, respectively. User input is received from the client or through headless interactions, while persistence of large amounts of data is delegated to a persistence service.}
+\label{highlevel-arch}
+\end{figure}
+
 Workflows and tasks in ICE are not explicitly treated as trees, or
 directed acyclic graphs (DAGS), as is common with grid workflow tools
 \cite{yu_taxonomy_2005}. Instead, ICE's design is inspired by representational
-state transfer (REST) \cite{fielding_architectural_2000}.
+state transfer (REST) and the workflow engine is implemented as services in an Eclipse Rich Client Platform (RCP) application
+\cite{fielding_architectural_2000} \cite{mcaffer_eclipse_2010}.
 
-Users initiate requests to create, edit, update, or delete workflows from
-the ``ICE Client'' (the workbench). The list of available workflows
+Figure \ref{highlevel-arch} shows the five primary components of ICE and their relationships to each other. Users initiate requests to create, edit, update, or delete workflows from the ``ICE Client'' (the workbench) or through headless interactions using web or language programming interfaces. The list of available workflows
 that can be created is provided dynamically to the ICE Client by
-the ``ICE Core,'' which acts as a server. This information is
+the ``ICE Core,'' which acts as a server and is the primary component responsible for workflow orchestration. Workflow information is
 provided dynamically because it often changes at run time based on 
 both the configuration of available workflow components in the registry and on
-persisted workflows that users have saved in their workspace.
-Information about workflows is provided to the Client by the Core
-through stateless ``Forms'' that describe the workflow and provide
+persisted workflows that users have saved in their workspace. Workflow task enactment and execution is performed by services called ``Items.'' Information about workflows is provided to the Client by the Core
+through common data structures rooted in a stateless ``Form'' tree. Forms describe the workflow and provide
 all the necessary information to understand \emph{what} should process
 the workflow (but not \emph{how} it should be processed). Once users
 modify the description of the workflow in the Form to provide their
 specific details, the Client dispatches a request to the Core to modify
 and/or process the workflow. The Core then uses the information from the Form
-to perform a service lookup to identify the correct service to process the workflow.
+to perform a service lookup to identify the correct Item to process the workflow.
 
-Workflows in ICE are encoded in and processed by services called ``Items,'' and each
-workflow type is a subclass of an Item base class. Items are registered dynamically
+\subsubsection{ICE Core}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{src/images/ICE-arch-2.jpg}
+\caption{The architecture of the ICE Core and its dependencies. The ICE Core class handles communications between workflow Items and common data structures, but delegates construction of workflow Items to builders.}
+\label{core-arch}
+\end{figure}
+
+The primary purpose of the ICE Core is to orchestrate workflows and services for the platform. Figure \ref{core-arch} shows the primary classes that interact with the ICE Core. It is the ``core'' control component of ICE where all other component interactions converge. It is the middle tier of ICE's architecture and brokers communications between Items and Clients (graphical or not) by sharing Forms that contain workflow data. The ICE Core class delegates construction and management of Items to the Item Manager. 
+
+The Item Manager acts as a container and factory for Items created by the ICE Core. Items are constructed using the Builder pattern, with concrete construction handled by realizations of the ItemBuilder interface. 
+
+ICE 2.0 includes a graphical client based on the Eclipse Workbench, which is common for Eclipse applications. The workflow management capabilities of the core can be accessed through languages and a web-based programming interface as well (see Section \ref{framework}).
+
+\subsubsection{Items}
+\label{item}
+\label{item-states}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{src/images/ICE-arch-3.jpg}
+\caption{The class hierarchy of ICE Items showing the relationships between the Item, its subclasses, and services that it uses. Vibe Launcher and MOOSE Launcher are examples of special Job Launch Items for executing jobs, and their applications are discussed in section \ref{illustrative-examples}.}
+\label{item-arch}
+\end{figure}
+
+Each workflow Item in ICE is an independent service, and each
+workflow type is a subclass of the Item base class or another Item subclass. Items are registered dynamically
 through a service registry in ICE (see Section \ref{framework}) and
-provide the Forms for the ICE Core and Client. Since ICE's design is
+provide collections of workflow data, Forms, for the ICE Core and Client. Since ICE's design is
 highly object oriented, it is easiest to think of the Item class as a
 description of an abstract workflow and an Item object (an instance of
 the class) as a concrete workflow with all required execution details
-provided by its Form.
+specified in its Form.
 
+Figure \ref{item-arch} shows the class hierarchy of the Item class and its collaborators.
 Individual components of workflows (i.e., workflow ``tasks'' or
 ``nodes'') are either encoded directly in the workflow's subclass of
 Item or provided as ``Actions'' that are dynamically registered with
-an ``Action Factory'' and obtained at run time. Table 1 describes the
-differences between Items, Actions, and Forms.\footnote{An upcoming 
+an ``Action Factory'' and obtained at run time. Common data structures that are shared across Items, the Client, and the Core are provided by the data structures component. Table 1 describes the differences between Items, Actions, and Forms.\footnote{An upcoming 
 update to the API will include the formal introduction of
 IWorkflow, IWorkflowTask, and IWorkflowEngine interfaces to bring ICE's
-API language closer to other systems. However, this must be done carefully to
-preserve backwards compatibility with the present API.}
+API language closer to other systems such as Triquetrum. However, this must be done carefully to preserve backwards compatibility.}
 
 \begin{table*}[t]
 \begin{tabularx}{\textwidth}{|l|X|l|}
@@ -235,12 +273,7 @@ by Items. & Concrete workflow task executor.\tabularnewline\hline
 \caption{Class Descriptions for Items, Forms, and Actions}
 \end{table*}
 
-In addition to running as a desktop workbench, ICE can be run as a
-headless web server with a remote service interface and a web
-API. The web API is also used as the primary means of providing real-time 
-feedback and monitoring support in ICE.
-
-\subsubsection{Item States}\label{item-states}
+Commonly used subclasses of Item include the Model and Job Launcher classes, which can be  used to create workflow plugins for input generation and workflow execution, respectively. Composite Items are special Items that are built of compositions of other Items. Composite Items are commonly used for workflow Items that can be executed in parallel or to tightly couple different workflow tasks for resource and performance management.
 
 All Items in ICE are finite state machines where the states represent
 the abstract state of the workflow. For example, when an Item is first
@@ -257,8 +290,21 @@ simplifies the way the Core manages and interacts with Items. Second, by
 formalizing state and error checks, ICE explicitly delineates which workflows 
 can be executed from those that must receive additional configuration. 
 Finally, it allows developers implementing Items and
-Actions to specify, by contract, what is required before proceeding to the
+Actions to specify by contract what is required before proceeding to the
 next task, processing the workflow, or declaring a successful execution.
+
+\subsubsection{Data Structures}
+
+ICE contains a collection of common data structures that are useful for representing data needed modeling and simulation workflows. Figure \ref{data-arch} shows some of these classes and their relationship. All data structures (and Items) in ICE are uniquely identifiable and behave in predictable ways: they receive and dispatch updates, can be visited to determine type information, etc. \textit{Components} in the data sense, not the class sense, represent a special data structure that forms a child of a Form. Forms themselves are components and hierarchically aggregate other components.
+
+The name ``Component'' in the context of ICE's data structures refers to a unique and reusable collection of data, not a class or component in the object oriented sense. Components that hold data do very little of their own work but strongly scope the interfacial contract of their clients.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{src/images/ICE-arch-4.jpg}
+\caption{Common data structures and their relationships in ICE.}
+\label{data-arch}
+\end{figure}
 
 \subsubsection{Persistence and
 Workspaces}\label{persistence-and-workspaces}
@@ -272,7 +318,7 @@ workflows if the files are detected in the same directory of the
 workspace as the workflow itself. For example, when executing a remote
 job, ICE will automatically move the input file if it is specified in
 the workflow and available in the project directory of the workspace.
-Likewise, if the output is small enough, ICE will automatically move it back
+Likewise, if the output is small enough (less than 50 megabytes), ICE will automatically move it back
 to the local directory. By convention, all paths in ICE's Forms are
 relative to the workspace root path. Workspace directories are specified
 by the user and are fully functional Eclipse workspaces.
@@ -283,38 +329,32 @@ XML~\cite{burke_restful_2010}. In principle, other persistence providers
 could replace the XML-based provider since it is registered as a dynamic 
 service and a JAX-P based provider has been used in the past.
 
-\subsubsection{Extending the Framework to Add Custom
-Workflows}\label{framework}
+\subsubsection{Relationship to Other Eclipse Technologies}\label{framework}
 
 ICE is an Eclipse Rich Client Platform (RCP) application
 \cite{mcaffer_eclipse_2010} and has a plugin architecture based on 
-Equinox, which is the reference implementation of the Open Service Gateway Initiative (OSGi) 
-framework specification \cite{mcaffer_osgi_2010}. ICE uses more than 1,200 additional
-packages from the Eclipse ecosystem to provide services like language
+Equinox, which is the reference implementation of the Open Service Gateway Initiative (OSGi)
+framework specification \cite{mcaffer_osgi_2010}. It is most appropriate to think of Eclipse ICE as an alternative flavor of any other Eclipse development environment because like those environments it is just a collection of Eclipse plugins with a well-defined purpose and brand. ICE uses more than 1,200 additional packages from the Eclipse ecosystem to provide services like language
 support and visualization. Each unique element of ICE described
-in this work---including the Client, Core, Items, and data structures---are 
+in this work---including the Client, Core, Items, and data structures---is 
 provided as plugins to Equinox. Most plugins are managed
-dynamically and provided as services that can be obtained through a
-service registry. Most file I/O in ICE, with only a few exceptions,
-interacts with the RCP's resources plugin. This also includes remote
-resources that are managed with the Eclipse Parallel Tools Platform
-\cite{tibbitts_integrated_2009}.
+dynamically and provided as services that can be obtained as dynamic OSGi Declarative Services. File I/O in ICE, with only a few exceptions,
+interacts with the RCP's Resources plugin and the standard Eclipse Workspace. This also includes remote resources that are managed with Eclipse PTP.
 
-It is not possible to create new Items in ICE graphically, and---unless 
-they provide their own plugin to the framework---users can
-use only the workflow Items provided by their version of ICE. This extension method can seem like an onerous task to the novice user, especially if they do not know Java, but
-this design was chosen because it is, in the opinion of the authors, a
-far more sophisticated and sustainable way to create workflows than, for example,
-using a wiring diagram.
+ICE plugins are created used normal Eclipse development tools and installed into either the running instance of ICE or published in a newly built version. In either case, the running platform of ICE can only use the plugins that are actually installed and at least a small amount of code must be written in Java for each plugin. This extension method may seem odd to the novice user or developer, especially if they do not know Java very well, but
+this design was chosen because it is an easy, fast, and precise way to create workflows.
 
-ICE provides built-in development tools to automatically generate empty but ready to compile classes, (``stubs''), of
-plugins that can then be installed into the framework as services. This
+ICE provides built-in development tools to automatically generate empty but ready to compile classes (``stubs'') of plugins that can then be installed into the framework as services. These tools are based on other code generation tools in the Eclipse platform. This
 ``self-hosting'' makes it possible for new users to create complex,
 sophisticated workflows very quickly because they are not required to
-know how to interact with the framework. Furthermore, ICE provides a
-rich API that that exposes all workflow management functionality, documentation, tutorials, and tools to further simplify the process.
+know how to interact with the framework. Development of new workflows is streamlined because ICE provides a
+rich API that exposes all workflow management functionality, documentation, tutorials, and tools to further simplify the process. These are shared through the self-hosted environment by code completion tools, help menus, and documentation overlays. The close proximity of the workflow environment with the development platform for modeling and simulation codes is also beneficial because, as a self-hosted entity, workflows can be co-developed with the code.
 
-There are many situations where configuring workflows graphically is
+ICE can be run as a headless web server with a remote service interface and a web
+API. The web API is also used as the primary means of providing real-time 
+feedback and monitoring support in ICE, and it is published as an OSGi service as well. These services can also be consumed as OSGi Remote Services.
+
+There are many situations where configuring workflows graphically or serially is
 unacceptable, such as when a very large number of workflows will be
 executed or the type of information required is very fine grained. In
 these cases, it is often necessary to provide scripts to the workflow
@@ -322,7 +362,7 @@ management system. ICE includes the Eclipse Advanced Scripting
 Environment (EASE)~\cite{pontesegger_eclipse_2015} for scripting because it
 provides a way to script Eclipse RCP projects natively in Javascript,
 Jython, and Python. This also makes it possible to extend the
-environment by adding Items in these languages.
+environment by adding Items in these languages. Specifically, scripts in Javascript and Python are written and executed in simple shell that is part of the workbench. Calling other languages, such as C or Fortran, is typically accomplished by adding workflow Items for the executables in these languages and performing local workflow job launches. C languages routines have been called from ICE through the Java Native Interface (JNI), but this is not a technique that is widely used with the platform because of its complexity.
 
 \subsection{Functionality}\label{software-functionalities}
 
@@ -342,7 +382,7 @@ Outside of the development team, ICE is commonly deployed as a
 sophisticated user environment for computational science projects 
 (see Section \ref{impact}) and as a visualization tool. The ICE source code originally contained a
 significant amount of visualization support, but at the request of users
-in the community that support was ``spun off'' in early 2016 as the 
+in the community, that support was ``spun off'' in early 2016 as the 
 Eclipse Advanced Visualization Project (EAVP)~\cite{billings_eclipse_2015}.
 
 \section{Illustrative Examples}\label{illustrative-examples}
@@ -361,13 +401,14 @@ as part of its distribution, and new workflows were added to ICE to enable users
 to add multiple types of input, configure the simulation software, and launch
 simulations of virtual batteries. Interactive 3D visualizations of the
 results were embedded in the launcher so that users can quickly find
-their results. Figure 1 shows a (simulated) prismatic-cell battery's temperature
+their results. Figure \ref{vibe} shows a (simulated) prismatic-cell battery's temperature
 distribution during discharge.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{images/vibe_20151016.png}
 \caption{ICE workbench for VIBE analysis.}
+\label{vibe}
 \end{figure}
 
 VIBE 1.0 is available as a virtual machine (for convenient deployment) in which the simulation
@@ -386,13 +427,14 @@ provides workflow tools for MOOSE as well as specialized class
 generation utilities for developing custom MOOSE kernels. Many of the
 MOOSE tools in ICE were developed closely with the MOOSE team to
 reproduce various aspects of MOOSE's user interface, known as ``Peacock.'' 
-Figure 2 shows an example of the ICE workbench for a simple structural mechanics
+Figure \ref{moose} shows an example of the ICE workbench for a simple structural mechanics
 problem solved using the MOOSE framework \cite{mccaskey_scientific_2015}.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{images/ice-moose.png}
 \caption{ICE workbench for MOOSE workflows.}
+\label{moose}
 \end{figure}
 
 There are more than 300 MOOSE-based applications, and it is very
@@ -410,10 +452,10 @@ customized workflow tools as needed.
 Solid-state sintering of parts printed using binder jetting
 significantly increases part strength by decreasing the part porosity
 and eliminating voids. However, this process does cause the resulting
-product to shrink and warp from its original layout. An ideal, near-net-shape, 
-process would combine binder jetting with solid-state sintering and accounts
+product to shrink and warp from its original layout. An ideal near-net-shape 
+process would combine binder jetting with solid-state sintering and account
 for warpage and deformation in the part's design phase. 
-Figure 3 shows an ICE-based workbench for performing simulations of
+Figure \ref{binder} shows an ICE-based workbench for performing simulations of
 this process with visualizations of the pre- and post-simulation
 properties of a central body with eight cantilevers. The primary
 deformation in this type of geometry is bending or drooping of the
@@ -423,6 +465,7 @@ cantilevers due to sintering and thermal creep.
 \centering
 \includegraphics[width=\textwidth]{images/ice-bjm.png}
 \caption{ICE workbench for binder jet modeling.}
+\label{binder}
 \end{figure}
 
 \subsection{Neutron Reflectivity}\label{neutron-reflectivity}
@@ -430,13 +473,13 @@ cantilevers due to sintering and thermal creep.
 ICE also includes a small utility for simulating neutron reflectivity and
 comparing the results with other data \cite{billings_brand_2015}. This 
 utility was developed in collaboration with a team at ORNL's Spallation Neutron 
-Source to replace an older utility that was originally written in Visual Basic and 
-distributed via Excel macros. The new utility, developed in ICE is shown.
+Source to replace an older utility that was originally written in Visual Basic and distributed via Excel macros. The new utility, developed in ICE, is shown in Figure \ref{reflectivity}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{images/reflectivity-screenshot.png}
 \caption{ICE workbench for neutron reflectivity.}
+\label{reflectivity}
 \end{figure}
 
 \subsection{Quantum Computing}\label{quantum-computing}
@@ -446,13 +489,13 @@ software that can use quantum hardware or perform calculations on
 simulated quantum hardware becomes more pressing. Humble et al. created a simulator for
 adiabatic quantum computers where workflows were added to ICE to support
 interactions with the simulator and to process large sets of
-quadratic binary optimization problems \cite{humble_integrated_2014}. Figure 5
-shows the workbench for this project.
+quadratic binary optimization problems \cite{humble_integrated_2014}. Figure \ref{jade} shows the workbench for this project.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{images/jaded.png}
 \caption{ICE workbench in the Jade Adiabatic Development Environment (JADE) for quantum computing simulations.}
+\label{jade}
 \end{figure}
 
 %ICE also supports other quantum computing projects, including the
@@ -564,7 +607,7 @@ Bernholdt, Tim Bohn, Erica Grant, Mike Guidry, John M. Hetrick III, Forest Hull,
 Sebastien Jourdain, JiSoo Kim, Allison Koenecke, Fangzhou Lin, Eric J. Lingerfelt, Greg
 Lyon, Tony McCrary, Elizabeth Piersall, Neeti
 Pokhriyal, Adrian Sanchez, Claire Saunders, Nick Stanish, Matthew Wang, and
-Scott Wittenberg. The support of both the Nuclear Energy Advanced Modeling and Simulation (NEAMS) and Consortium for Simulation of Light-water Reactors (CASL) programs is also
+Scott Wittenberg. The support of both the Nuclear Energy Advanced Modeling and Simulation (NEAMS) and Consortium for Simulation of Light Water Reactors (CASL) programs is also
 greatly appreciated. The authors would like to acknowledge the special
 contribution of the Eclipse Foundation, the Eclipse Community, the
 Eclipse Science Working Group, and our many colleagues who use and
@@ -576,7 +619,7 @@ endless support and advocacy for this work.
 
 This work has been supported by the US Department of Energy, Offices of
 Nuclear Energy (DOE-NE) and Energy Efficiency and Renewable Energy
-(DOE-EERE), and by the ORNL Undergraduate Research Participation
+(DOE-EERE) and by the ORNL Undergraduate Research Participation
 Program, which is sponsored by ORNL and administered jointly by ORNL and
 the Oak Ridge Institute for Science and Education (ORISE). This work was
 also supported in part by the ORNL Director's
