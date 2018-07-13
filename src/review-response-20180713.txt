@@ -1,0 +1,25 @@
+Reviewers' comments:
+
+Editor:  I have only a few suggestions for the current version but I would like to see the revision before accepting it.
+
+Abstract
+- replace "It presents " with "We present .." Or something similar
+
+Main body
+
+- I suggest moving the "copyright" text to the end of the paper.  The copyright only applies if people want to use the software, so it seem like it belongs either at the end or with the software repository (or in the meta data table).  This will change the heading numbers.
+
+- "computational scientist" - All fields have substantial computing requirements.  Maybe just say "scientist" or "researcher".
+
+- the text at the beginning of section 2 is repeated almost verbatim at the beginning of the workflow section on the next page.
+
+Additional note:
+As a particle physicist, we have developed our own complex work load management systems together with data management systems that run 100K+ jobs with data getting close to 1 exabyte over 100 separate sites (including traditional centres, clouds, and HPCs) on behalf of thousands of users.   We seem to have developed our systems in completely separate worlds.  I am not asking for any changes to the paper on this topic but it might be interesting to you.
+-----
+
+Author responses
+1) We have updated the abstract.
+2) I have removed the copyright section from the section numbering scheme to fix the numbering. However, we are required under US law to include this notice on the first page/top of all works that received US government funding. This is not the copyright of the software, just a statement of the US Public Access rules.
+3) I have changed all instances of computational scientist to scientist.
+4) I have adjusted the text at the top of section two. It still lists the activities in question, but does not read as close to the other text now.
+5) I would be very interested to learn more about the workflow system described in the additional note. (Is it PanDA?) I would be very happy to have a discussion about the differences in these systems as well.

@@ -50,11 +50,7 @@ code are provided in Section \ref{sample-code-tutorials-and-other-resources}.
 
 \subsection{Workflow Model}\label{workflow-model}
 
-Computational scientists perform a variety of tasks in modeling and
-simulation that can be abstracted into a lightweight theoretical
-framework based broadly on five high-level activities: (1)
-creating input, (2) executing jobs, (3) analyzing results, (4) managing
-data, and (5) modifying code. Those same computational scientists would
+ICE's workflow model is based on making it easier for scientists to create input, launch jobs, analyze results, manage data, and modify code. Many scientists would
 most likely find these activities difficult for all codes with which
 they lack experience, whereas with their own codes---or those with which
 they are most familiar---these tasks may be so simple that they are
@@ -133,7 +129,7 @@ different because the activity changes focus to satisfy the needs of a
 human operator. Simple data reduction, where the exact reduction is
 known, certainly qualifies as executing a job; however, analysis of
 modeling and simulation results is far from simple data reduction and is
-generally far more interactive for computational scientists.
+generally far more interactive for scientists.
 
 \textbf{Managing data} includes moving, copying, storing, sharing, or
 otherwise interacting with data for or from simulations. This activity
@@ -147,7 +143,7 @@ data, packaging data for publications, and updating values manually or through s
 scientific computing workflow. However, modeling and simulation use
 cases often require users to explicitly modify code before execution or to issue special re-build instructions. This is true, for example, with the computational fluid dynamics code Nek5000, which requires modification of code before compilation and special build instructions using the \textit{makenek} shell script
 \cite{the_nek5000_team_nek5000_2014}.
-Many computational scientists consider ``their workflow'' to be re-running
+Many scientists consider ``their workflow'' to be re-running
 software after modifications for purely exploratory purposes. This might
 be required if the model that the author is modifying cannot be
 configured directly as part of the input but can be easily accomplished by manipulating the source code.
@@ -180,7 +176,7 @@ One significant difference between ICE and many other systems is that it uses a 
 
 \section{Software Description}\label{software-description}
 
-ICE was specifically created to address hands-on workflows for computational scientists, as in Section \ref{illustrative-examples}. Users download and
+ICE was specifically created to address hands-on workflows for scientists, as in Section \ref{illustrative-examples}. Users download and
 execute ICE locally, and ICE in turn orchestrates local or remote workflows as
 required. It provides a comprehensive workbench for modeling and
 simulation that includes tools for workflows, visualization, data
@@ -367,7 +363,7 @@ environment by adding Items in these languages. Specifically, scripts in Javascr
 \subsection{Functionality}\label{software-functionalities}
 
 The most important function of ICE is to serve as an easily extended
-workflow management system for computational scientists in support of
+workflow management system for scientists in support of
 the activities described previously. In practice, it is most often used as a
 combination of workflow management system and development environment
 since it contains a significant amount of Eclipse's software development
@@ -581,7 +577,7 @@ also excellent examples of how to work with the platform. Tutorial and demonstra
 
 \section{Conclusions}\label{conclusions}
 
-Modeling and simulation workflows for computational scientists differ
+Modeling and simulation workflows for scientists differ
 greatly from those of experimentalists or those who primarily interact with
 grid-based workflow management systems. The Eclipse ICE effort described here 
 has been used to address interdisciplinary problems in 
