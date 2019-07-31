@@ -105,7 +105,7 @@ This monitoring could be a simple check as to whether or not the execution
 has completed, or it could involve monitoring the output of individual
 quantities to examine the calculation state. The latter is often used to
 detect calculation errors that will result in incorrect results. If such
-problems are found, the job is typically cancelled (``killed'') to save
+problems are found, the job is typically canceled (``killed'') to save
 compute resources and is then re-run later.
 
 Local jobs in ICE are executed using standard Java system calls. Remote jobs
@@ -122,7 +122,7 @@ In this work, it should be assumed---unless otherwise noted---that
 possibly including real-time updates to visualizations. It is also important to
 note that executing a job is not the same as executing a workflow. Executing
 jobs specifically refers to launching simulations, whereas executing a workflow
-could be something different such as generating input or postprocessing
+could be something different such as generating input or post-processing
 results. This is an important distinction because ICE's workflows are all
 executed locally, but simulations and work can be distributed remotely
 depending on the implementation of the workflow plugin.
@@ -130,7 +130,7 @@ depending on the implementation of the workflow plugin.
 \textbf{Analyzing results} includes executing special jobs to transform
 data in one or more prescribed ways and producing artifacts with
 scientific significance from the transformed data. This could include, for
-example, postprocessing results and visualizing the new data with
+example, post-processing results and visualizing the new data with
 dedicated visualization tools. For many types of scientific computing,
 this includes viewing the results of a simulation on a mesh or grid and
 extracting publication-quality images or movies from that data. Other
@@ -582,7 +582,7 @@ product to shrink and warp from its original layout. An ideal near-net-shape
 process would combine binder jetting with solid-state sintering and account
 for warpage and deformation in the part's design phase. 
 Figure \ref{binder} shows an ICE-based workbench for performing simulations of
-this process with visualizations of the pre- and postsimulation
+this process with visualizations of the pre- and post-simulation
 properties of a central body with eight cantilevers. The primary
 deformation in this type of geometry is bending or drooping of the
 cantilevers due to sintering and thermal creep.
